@@ -19735,7 +19735,7 @@ module.exports = App;
 /** @jsx React.DOM */
 var React = require('react');
 var App = require('./app.jsx');
-React.render(React.createElement(App, null), document.body);
+React.render(React.createElement(App, null), document.getElementById('example'));
 
 
 },{"./app.jsx":157,"react":156}]},{},[158]);

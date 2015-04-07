@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // Create a new schema for our tweet data
 var schema = new mongoose.Schema({
-  text       : String,
+  text       : {type: String, required: true},
   date       : Date
 });
 

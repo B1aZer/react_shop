@@ -29,6 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/api', api);
 
+app.use(function(err, req, res, next) {
+  res.status(400).json(err);
+});
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address;

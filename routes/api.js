@@ -8,20 +8,20 @@ router.route('/products')
   .get(function(req, res, next) {
     Product.find(function (err, products) {
       if (err)
-        res.send(err);
+        return next(err);
       res.json(products);
     });
   })
 
-  .post(function(req, res) {
+  .post(function(req, res, next) {
 
     var product = new Product();
+
     product.text = req.body.text;
 
     product.save(function(err) {
       if (err)
-        res.send(err);
-
+        return next(err);
       res.json({ message: 'Product created!' });
     });
 
@@ -30,24 +30,24 @@ router.route('/products')
 
 router.route('/products/:product_id')
 
-  .get(function(req, res) {
+  .get(function(req, res, next) {
     Product.findById(req.params.product_id, function(err, product) {
       if (err)
-        res.send(err);
+        return next(err);
       res.json(product);
     });
   })
 
-  .put(function(req, res) {
+  .put(function(req, res, next) {
     Product.findById(req.params.product_id, function(err, product) {
       if (err)
-        res.send(err);
+        return next(err);
 
       product.text = req.body.text;
 
       product.save(function(err) {
         if (err)
-          res.send(err);
+          return next(err);
 
         res.json({ message: 'product updated!' });
       });
@@ -55,10 +55,10 @@ router.route('/products/:product_id')
     });
   })
 
-  .delete(function(req, res) {
+  .delete(function(req, res, next) {
     Product.remove({ _id: req.params.product_id }, function(err, product) {
       if (err)
-        res.send(err);
+        return next(err);
       res.json({ message: 'Successfully deleted' });
     });
   });

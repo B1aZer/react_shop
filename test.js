@@ -1,0 +1,1 @@
+console.error("Error: Parsing file /home/blaze/Sites/react/shop/react/main.jsx: Unexpected token (4:13)");

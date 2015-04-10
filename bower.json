@@ -1,0 +1,20 @@
+{
+  "name": "shop",
+  "version": "0.0.0",
+  "homepage": "https://github.com/B1aZer/react_shop",
+  "authors": [
+    "Dmitry Branitskiy <dmitry.branitskiy@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.3"
+  }
+}

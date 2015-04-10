@@ -54,7 +54,7 @@ gulp.task('copy', function() {
 
   var jsFilter = gulpFilter(['*.js', '*.js.map']);
   var cssFilter = gulpFilter(['*.css', '*.css.map']);
-  var fontFilter = gulpFilter(['*.eot', '*.woff', '*.svg', '*.ttf']);
+  var fontFilter = gulpFilter(['*.eot', '*.woff', '*.woff2', '*.svg', '*.ttf']);
 
   return gulp.src(mainBowerFiles())
 
@@ -81,5 +81,5 @@ gulp.task('copy', function() {
   // grab vendor font files from bower_components and push in /public 
   .pipe(fontFilter)
   .pipe(flatten())
-  .pipe(gulp.dest(dest_path + '/fonts'));
+  .pipe(gulp.dest(dest_path + '/stylesheets/fonts'));
 });

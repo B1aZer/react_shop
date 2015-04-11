@@ -17,7 +17,8 @@ router.route('/products')
 
     var product = new Product();
 
-    product.text = req.body.text;
+    product.name = req.body.name;
+    product.price = req.body.price;
 
     product.save(function(err) {
       if (err)
@@ -43,7 +44,8 @@ router.route('/products/:product_id')
       if (err)
         return next(err);
 
-      product.text = req.body.text;
+      product.name = req.body.name;
+      product.price = req.body.price;
 
       product.save(function(err) {
         if (err)

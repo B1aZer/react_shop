@@ -14,7 +14,6 @@ router.route('/products')
   })
 
   .post(function(req, res, next) {
-
     var product = new Product();
 
     product.name = req.body.name;

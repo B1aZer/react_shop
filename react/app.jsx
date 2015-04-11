@@ -7,9 +7,24 @@ var data = [
 ];
 
 var App = React.createClass({
+  getInitialState: function() {
+    return {data: data};
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: '/api/products',
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
 	render: function() {
 		return (
-      <ItemList data={data} />
+      <ItemList data={this.state.data} />
 		);
 	}
 });

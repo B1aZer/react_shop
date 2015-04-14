@@ -22,9 +22,28 @@ var App = React.createClass({
       }.bind(this)
     });
   },
+  handleCommentSubmit: function(comment) {
+    $.ajax({
+      url: '/api/products',
+      dataType: 'json',
+      type: 'POST',
+      data: comment,
+      success: function(data) {
+        var items = this.state.data;
+        items.push(comment);
+        this.setState({data: items});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
 	render: function() {
 		return (
-      <ItemList data={this.state.data} />
+      <div className="app">
+        <ItemList data={this.state.data} />
+        <AddForm onFormSubmit={this.handleCommentSubmit}/>
+      </div>
 		);
 	}
 });
@@ -70,6 +89,31 @@ var Item = React.createClass({
         </div>
 		);
 	}
+});
+
+var AddForm = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var name = React.findDOMNode(this.refs.name).value.trim();
+    var price = React.findDOMNode(this.refs.price).value.trim();
+    if (!name || !price) {
+      return;
+    }
+    console.log('go');
+    this.props.onFormSubmit({name: name, price: price});
+    React.findDOMNode(this.refs.name).value = '';
+    React.findDOMNode(this.refs.price).value = '';
+    return;
+  },
+  render: function() {
+    return (
+      <form className="add-form" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Product name" ref="name"/>
+        <input type="number" placeholder="Your price" ref="price"/>
+        <input type="submit" value="Post" />
+      </form>
+    );
+  }
 });
 
 module.exports = App;
